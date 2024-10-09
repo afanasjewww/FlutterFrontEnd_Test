@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(const FrontendApp());
@@ -51,11 +50,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  final List<int> _counters = List.generate(20, (index) => 0);
 
-  void _incrementCounter() {
+  void _incrementCounter(int index) {
     setState(() {
-      _counter++;
+      _counters[index]++; // Increment the counter for the specific row
     });
   }
 
@@ -75,21 +74,20 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 30,
           ),
           title: Text(
-            'Bitcoin $_counter',
+            'Bitcoin ${_counters[index]}',
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           subtitle: Text(
             "35000\$",
             style: Theme.of(context).textTheme.labelSmall,
           ),
-          trailing: const Icon(Icons.arrow_forward_ios),
+          trailing: IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => _incrementCounter(
+                index), // Call the function to increment counter
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
