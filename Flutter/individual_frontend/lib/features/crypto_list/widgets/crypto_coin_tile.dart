@@ -19,7 +19,7 @@ class CryptoCoinTile extends StatelessWidget {
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       subtitle: Text(
-        "${coin.priceEUR} \$",
+        "${double.parse((coin.priceEUR).toStringAsFixed(2))} \$",
         style: Theme.of(context).textTheme.labelSmall,
       ),
       trailing: IconButton(
