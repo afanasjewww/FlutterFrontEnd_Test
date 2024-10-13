@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:individual_frontend/repositories/crypto_coins/models/crypto_coin.dart';
 
 class CryptoCoinTile extends StatelessWidget {
   const CryptoCoinTile({
     super.key,
-    required this.coinName,
+    required this.coin,
   });
 
-  final String coinName;
+  final CryptoCoin coin;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Image.asset(
-        'assets/img/bitcoin.png',
-        height: 30,
-        width: 30,
-      ),
+      leading: Image.network(coin.imageURL),
       title: Text(
         // '$coinName ${_counters[index]}',
-        coinName,
+        coin.name,
         style: Theme.of(context).textTheme.bodyMedium,
       ),
       subtitle: Text(
-        "35000\$",
+        "${coin.priceEUR} \$",
         style: Theme.of(context).textTheme.labelSmall,
       ),
       trailing: IconButton(
@@ -37,7 +34,7 @@ class CryptoCoinTile extends StatelessWidget {
       onTap: () {
         Navigator.of(context).pushNamed(
           '/coin',
-          arguments: coinName,
+          arguments: coin,
         );
       },
     );
