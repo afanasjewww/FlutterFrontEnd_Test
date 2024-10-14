@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CryptoCoin extends Equatable {
-  CryptoCoin(
+  const CryptoCoin(
       {required this.name, required this.priceEUR, required this.imageURL});
 
   final String name;
